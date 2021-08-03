@@ -103,7 +103,7 @@ class LocationService(
     }
 
     private fun isLocationEnabled() : Boolean{
-        val locationManager = context.checkSelfPermission(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGpsProviderEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         val isNetworkProviderEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
