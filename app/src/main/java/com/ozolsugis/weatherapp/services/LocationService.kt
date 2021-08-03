@@ -33,16 +33,11 @@ class LocationService(
     EasyPermissions.PermissionCallbacks
 {
 
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    var fusedLocationProviderClient = FusedLocationProviderClient(context)
 
     var latitude : Double = 0.0
     var longitude : Double = 0.0
 
-    override fun onCreate() {
-        super.onCreate()
-
-        fusedLocationProviderClient = FusedLocationProviderClient(context)
-    }
 
     // MissingPermission because requestLocationUpdates needs to check for permissions
     // but we already did that in  getLocationUpdate fun first if, where we initiated
