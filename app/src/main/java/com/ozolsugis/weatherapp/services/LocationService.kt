@@ -76,6 +76,7 @@ class LocationService(
                 for (location in locationResults){
                     latitude = location.latitude
                     longitude = location.longitude
+                    Timber.d("New Location = ${location.latitude} , ${location.longitude}")
                 }
             }
         }
