@@ -29,6 +29,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ozolsugis.weatherapp.data.remote.responses.WeatherForecast
 import com.ozolsugis.weatherapp.presentation.ui.theme.*
 import com.ozolsugis.weatherapp.presentation.ui.theme.NightBlue
+import com.ozolsugis.weatherapp.util.Constants
 import com.ozolsugis.weatherapp.util.Constants.APPLICATION_NAME
 
 import com.ozolsugis.weatherapp.util.Constants.COMPASS
@@ -119,9 +120,8 @@ fun MainScreen(
                 .padding(start = 50.dp)
 
         ) {
-            val image = painterResource(id = icon)
             Image(
-                painter = image,
+                painter = painterResource(id = icon),
                 contentDescription = null,
                 modifier = Modifier.size(75.dp)
             )
@@ -268,28 +268,22 @@ fun WeatherState(
             Column(
                 Modifier
                     .fillMaxSize()
+                    .padding()
                     .background(
-                        Brush.verticalGradient(
-                            listOf(LightOrange, NightBlue),
-                            tileMode = TileMode.Mirror
-                        )
+                        Brush.verticalGradient(Constants.CLOUDS_BACKGROUND_DAY)
                     ),
                 verticalArrangement = Arrangement.SpaceAround,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = APPLICATION_NAME,
-                    color = TextColor,
-                    fontSize = 40.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                Text(text = APPLICATION_NAME,fontSize = 40.sp, fontWeight = FontWeight.Normal)
                 CircularProgressIndicator(
-                    color = Color.Yellow,
-                    modifier = Modifier
-                        .size(150.dp)
-                        .fillMaxSize()
-                        .padding(16.dp),
+                    color = Color.Black,
                     strokeWidth = 5.dp,
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .padding(bottom = 100.dp)
+                        .size(150.dp)
+
                 )
             }
 
