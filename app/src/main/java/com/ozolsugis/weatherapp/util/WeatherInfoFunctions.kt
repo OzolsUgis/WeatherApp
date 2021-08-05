@@ -11,6 +11,7 @@ import com.ozolsugis.weatherapp.util.Constants.SNOW_BACKGROUND_DAY
 import com.ozolsugis.weatherapp.util.Constants.SNOW_BACKGROUND_NIGHT
 import com.ozolsugis.weatherapp.util.Constants.THUNDERSTORM_BACKGROUND_DAY
 import com.ozolsugis.weatherapp.util.Constants.THUNDERSTORM_BACKGROUND_NIGHT
+import timber.log.Timber
 import java.time.Instant
 import java.time.format.DateTimeFormatter
 
@@ -19,6 +20,7 @@ object WeatherInfoFunctions {
         return iconId.contains("n")
     }
     fun getIcon(iconId: String) : Int{
+        Timber.d(iconId)
         var icon = 0
         when(iconId) {
             in Constants.BROKEN_CLOUDS -> {
@@ -38,7 +40,7 @@ object WeatherInfoFunctions {
 
             }
             in Constants.CLOUDS_DAY -> {
-                icon = Constants.CLOUDS_DAY_ICON
+                icon = Constants.CLOUDS_ICON
 
             }
             in Constants.FEW_CLOUDS_NIGHT -> {
