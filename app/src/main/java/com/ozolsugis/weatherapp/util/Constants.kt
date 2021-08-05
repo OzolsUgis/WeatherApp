@@ -24,7 +24,7 @@ object Constants {
     const val BROKEN_CLOUDS_ICON = R.drawable.broken_clouds
     const val CLEAR_SKY_DAY_ICON = R.drawable.clear_day
     const val CLEAR_SKY_NIGHT_ICON = R.drawable.clear_night
-    const val CLOUDS_DAY_ICON = R.drawable.cloudy_day
+    const val CLOUDS_ICON = R.drawable.clouds
     const val FEW_CLOUDS_DAY_ICON = R.drawable.cloudy_day
     const val FEW_CLOUDS_NIGHT_ICON = R.drawable.cloudy_night
     const val MIST_ICON = R.drawable.mist
