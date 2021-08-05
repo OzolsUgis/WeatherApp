@@ -3,6 +3,7 @@ package com.ozolsugis.weatherapp.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         val locationUpdate = LocationService(this,this)
         locationUpdate.getLocationUpdate()
@@ -29,8 +31,8 @@ class MainActivity : ComponentActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000L)
-            var latitude: Double = locationUpdate.latitude
-            var longitude: Double = locationUpdate.longitude
+            val latitude: Double = locationUpdate.latitude
+            val longitude: Double = locationUpdate.longitude
 
             setContent {
                 WeatherAppTheme {
