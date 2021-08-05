@@ -14,7 +14,7 @@ import com.ozolsugis.weatherapp.util.Constants.THUNDERSTORM_BACKGROUND_NIGHT
 import java.time.Instant
 import java.time.format.DateTimeFormatter
 
-object WeatherInfoFuntions {
+object WeatherInfoFunctions {
     fun isNight(iconId: String) : Boolean{
         return iconId.contains("n")
     }
