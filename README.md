@@ -35,6 +35,7 @@
       <a href='#contacts'>Contacts</a> 
     </li>
   </ol>
+</details>
   
 ## About Project
 ![product-screenshot](https://imagizer.imageshack.com/v2/1280x1024q90/924/M6UCGJ.jpg)
