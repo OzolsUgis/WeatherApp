@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.graphics.painter.Painter
 
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +34,7 @@ import com.ozolsugis.weatherapp.util.Constants
 import com.ozolsugis.weatherapp.util.Constants.APPLICATION_NAME
 
 import com.ozolsugis.weatherapp.util.Constants.COMPASS
+import com.ozolsugis.weatherapp.util.Constants.CURRENT_TIME
 
 import com.ozolsugis.weatherapp.util.Constants.SUNRISE
 import com.ozolsugis.weatherapp.util.Constants.SUNSET
@@ -50,6 +52,7 @@ import java.util.*
 
 import kotlin.math.roundToInt
 import com.ozolsugis.weatherapp.util.timeFormat as timeFormat
+import kotlin.Int as Int
 
 
 @Composable
@@ -66,7 +69,6 @@ fun WeatherAppHomePage(
 
 }
 
-
 @Composable
 fun MainScreen(
     city: String,
@@ -82,13 +84,7 @@ fun MainScreen(
     sunsetTime: Long
 ) {
     val backgroundColors = checkForWeatherId(weatherDataId, iconId)
-    val icon = getIcon(iconId)
     val systemUiController = rememberSystemUiController()
-    val forecastTimeFormat = DateFormat.getDateTimeInstance(
-        DateFormat.DEFAULT,
-        DateFormat.SHORT
-    ).format(Date())
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -104,132 +100,158 @@ fun MainScreen(
         SideEffect() {
             systemUiController.setSystemBarsColor(backgroundColors[0])
         }
-        Text(
-            text = city,
-            fontSize = 40.sp,
-            modifier = Modifier.padding(top = 16.dp)
+        CurrentLocationAndDateSection(
+            city = city,
+            time = CURRENT_TIME
         )
-        Text(text = forecastTimeFormat)
+        WeatherIconAndStateSection(
+            weatherDescription = description,
+            iconId = iconId
+        )
+        TemperatureSection(
+            currentTemperature = temp,
+            minTemperature = minTemp,
+            maxTemperature = maxTemp
+        )
+        WeatherConditionSection(
+            windSpeed = windSpeed,
+            sunsetTime = sunsetTime,
+            sunriseTime = sunriseTime,
+            windDir = windDir
+        )
+    }
+}
 
-        Spacer(modifier = Modifier.size(150.dp))
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(start = 50.dp)
 
-        ) {
-            Image(
-                painter = painterResource(id = icon),
-                contentDescription = null,
-                modifier = Modifier.size(75.dp)
+@Composable
+fun CurrentLocationAndDateSection(
+    city: String,
+    time: String
+) {
+    Text(
+        text = city,
+        fontSize = 40.sp,
+        modifier = Modifier.padding(top = 16.dp)
+    )
+    Text(text = time)
+
+    Spacer(modifier = Modifier.size(150.dp))
+}
+
+@Composable
+fun WeatherIconAndStateSection(
+    weatherDescription: String,
+    iconId: String
+) {
+    val icon = getIcon(iconId)
+    Row(
+        horizontalArrangement = Arrangement.Start,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(start = 50.dp)
+
+    ) {
+        Image(
+            painter = painterResource(id = icon),
+            contentDescription = null,
+            modifier = Modifier.size(75.dp)
+        )
+        Text(
+            text = "${weatherDescription[0].uppercaseChar()}${weatherDescription.substring(1)}",
+            fontWeight = FontWeight.Normal,
+            fontSize = 26.sp,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+        )
+    }
+}
+
+@Composable
+fun TemperatureSection(
+    currentTemperature: Double,
+    minTemperature: Double,
+    maxTemperature: Double
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(start = 50.dp, end = 30.dp, bottom = 16.dp)
+
+    ) {
+        Text(
+            text = "${currentTemperature.roundToInt()}°",
+            fontSize = 100.sp,
+            fontWeight = FontWeight.Thin,
+
             )
+        Column() {
             Text(
-                text = "${description[0].uppercaseChar()}${description.substring(1)}",
-                fontWeight = FontWeight.Normal,
-                fontSize = 26.sp,
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-            )
-        }
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(start = 50.dp, end = 30.dp, bottom = 16.dp)
-
-        ) {
-            Text(
-                text = "${temp.roundToInt()}°",
-                fontSize = 100.sp,
+                text = "${minTemperature.roundToInt()}° C",
+                fontSize = 30.sp,
                 fontWeight = FontWeight.Thin,
-
-                )
-            Column() {
-                Text(
-                    text = "${maxTemp.roundToInt()}° C",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Thin,
-                )
-                Text(
-                    text = "${minTemp.roundToInt()}° C",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Thin,
-                )
-            }
+            )
+            Text(
+                text = "${maxTemperature.roundToInt()}° C",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Thin,
+            )
         }
-        Spacer(modifier = Modifier.size(70.dp))
-        Row(
-            verticalAlignment = Alignment.Bottom,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(start = 50.dp, end = 30.dp)
-        ) {
-            val compass = painterResource(id = COMPASS)
-            val windSpeedIcon = painterResource(id = WIND_SPEED)
-            val sunset = painterResource(id = SUNSET)
-            val sunrise = painterResource(id = SUNRISE)
+    }
+    Spacer(modifier = Modifier.size(70.dp))
+}
+
+@Composable
+fun WeatherIconAndValue(
+    iconPainter: Painter,
+    value: String
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Image(
+            painter = iconPainter,
+            contentDescription = null,
+            modifier = Modifier.size(40.dp)
+        )
+        Spacer(modifier = Modifier.size(10.dp))
+        Text(text = value, fontWeight = FontWeight.Thin, fontSize = 20.sp)
+    }
+}
+
+@Composable
+fun WeatherConditionSection(
+    windSpeed: Double,
+    sunsetTime: Long,
+    sunriseTime: Long,
+    windDir: Int
+) {
+    Row(
+        verticalAlignment = Alignment.Bottom,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(start = 50.dp, end = 30.dp)
+    ) {
+        val compass = painterResource(id = COMPASS)
+        val windSpeedIcon = painterResource(id = WIND_SPEED)
+        val sunset = painterResource(id = SUNSET)
+        val sunrise = painterResource(id = SUNRISE)
 
 
-            val formattedSunriseTime = timeFormat(sunriseTime).substring(11, 16)
+        val formattedSunriseTime = timeFormat(sunriseTime).substring(11, 16)
+        val formattedSunsetTime = timeFormat(sunsetTime).substring(11, 16)
 
-            val formattedSunsetTime = timeFormat(sunsetTime).substring(11, 16)
+        val windDirection = getWindDirection(windDir)
+        val windSpeed = "$windSpeed m/s"
 
-            val windDirection = getWindDirection(windDir)
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Image(
-                    painter = windSpeedIcon,
-                    contentDescription = null,
-                    modifier = Modifier.size(40.dp)
-                )
-                Spacer(modifier = Modifier.size(10.dp))
-                Text(text = "$windSpeed m/s", fontWeight = FontWeight.Thin, fontSize = 20.sp)
-            }
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-
-                Image(
-                    painter = compass,
-                    contentDescription = null,
-                    modifier = Modifier.size(40.dp)
-                )
-                Spacer(modifier = Modifier.size(10.dp))
-                Text(text = windDirection, fontWeight = FontWeight.Thin, fontSize = 20.sp)
-            }
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-
-                Image(
-                    painter = sunrise,
-                    contentDescription = null,
-                    modifier = Modifier.size(40.dp)
-                )
-                Spacer(modifier = Modifier.size(10.dp))
-                Text(text = formattedSunriseTime, fontWeight = FontWeight.Thin, fontSize = 20.sp)
-            }
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Image(
-                    painter = sunset,
-                    contentDescription = null,
-                    modifier = Modifier.size(40.dp)
-                )
-                Spacer(modifier = Modifier.size(10.dp))
-                Text(text = formattedSunsetTime, fontWeight = FontWeight.Thin, fontSize = 20.sp)
-            }
-        }
-
-
+        WeatherIconAndValue(windSpeedIcon, windSpeed)
+        WeatherIconAndValue(compass, windDirection)
+        WeatherIconAndValue(sunrise, formattedSunriseTime)
+        WeatherIconAndValue(sunset, formattedSunsetTime)
     }
 }
 
@@ -275,7 +297,7 @@ fun WeatherState(
                 verticalArrangement = Arrangement.SpaceAround,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = APPLICATION_NAME,fontSize = 40.sp, fontWeight = FontWeight.Normal)
+                Text(text = APPLICATION_NAME, fontSize = 40.sp, fontWeight = FontWeight.Normal)
                 CircularProgressIndicator(
                     color = Color.Black,
                     strokeWidth = 5.dp,
