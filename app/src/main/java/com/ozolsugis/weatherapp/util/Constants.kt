@@ -3,6 +3,8 @@ package com.ozolsugis.weatherapp.util
 import android.graphics.Color
 import com.ozolsugis.weatherapp.R
 import com.ozolsugis.weatherapp.presentation.ui.theme.*
+import java.text.DateFormat
+import java.util.*
 
 object Constants {
 
@@ -67,6 +69,11 @@ object Constants {
     val SNOW_BACKGROUND_NIGHT = listOf(MediumGray,  SnowWhiteNight)
     val CLEAR_BACKGROUND_NIGHT = listOf(NightDark, NightMedium)
     val CLOUDS_BACKGROUND_NIGHT = listOf(CloudsNightDark, CloudsNightLight)
+
+    val CURRENT_TIME = DateFormat.getDateTimeInstance(
+        DateFormat.DEFAULT,
+        DateFormat.SHORT
+    ).format(Date())
 
 
 
