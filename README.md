@@ -102,7 +102,7 @@ In this project you can show data fields in your own way.
    ```kotlin
     @Query("lang") language : String = "en",
     ```
-2. In unit row you specify new default units you like (You can find country codes in API documentation)
+2. In unit row you specify new default units you like (You can find units in API documentation)
    ```kotlin
     @Query("units") units : String = "metric",
     ```
