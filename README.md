@@ -42,6 +42,7 @@
 
 I introduce you to Weather App, This application is ment for thoes who wants to follow everydays weather conditions. This application allows you to find out your current locations
 weather. It takes your current location via GPS or Network, sends data to weather api and returns weather details, and then they are displayed in a viewers friendly way. This application is in Alpha version so it means its still in developing state, but it serves its main purpose. 
+
 This app :
 *  Have a single read-only page, so its easy to use
 *  Background according to current weather (It's individualy themed for every state of weather) 
