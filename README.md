@@ -179,7 +179,7 @@ MainScreen composable
             }
         }
     ```
-3. Now i can build my UI in MainScreen composable
+3. Now i can build my UI in TemperatureSection function 
     * I want to put min and max temperatures next to my current temperature so i use Row composable and in Row Scope 
     i make Column composable because i want max temperature be on top of min temperature 
     ```kotlin
