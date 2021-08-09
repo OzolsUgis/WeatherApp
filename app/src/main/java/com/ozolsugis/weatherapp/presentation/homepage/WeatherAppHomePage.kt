@@ -246,9 +246,9 @@ fun WeatherConditionSection(
         val formattedSunsetTime = timeFormat(sunsetTime).substring(11, 16)
 
         val windDirection = getWindDirection(windDir)
-        val windSpeed = "$windSpeed m/s"
 
-        WeatherIconAndValue(windSpeedIcon, windSpeed)
+
+        WeatherIconAndValue(windSpeedIcon, "$windSpeed m/s")
         WeatherIconAndValue(compass, windDirection)
         WeatherIconAndValue(sunrise, formattedSunriseTime)
         WeatherIconAndValue(sunset, formattedSunsetTime)
