@@ -98,7 +98,7 @@ you can find installation step-by-step in following :
     android.useAndroidX=true
     android.enableJetifier=true
     ```
-6. Enter your API in ?????????
+6. ADD your API KEY
     ```kotlin
       API_KEY = 'ENTER YOUR API KEY HERE'
     ```
