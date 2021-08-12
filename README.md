@@ -85,11 +85,24 @@ you can find installation step-by-step in following :
    git clone https://github.com/OzolsUgis/WeatherApp.git
    ```
    
-3. Let the Gradle build you project
-4. Enter your API in ?????????
+3. Create new **gradle.properties** file in App folder
+
+
+    ![product-screenshot](https://imagizer.imageshack.com/v2/640x480q90/924/RZxeZA.png)
+    ![product-screenshot](https://imagizer.imageshack.com/v2/320x240q90/922/gvwzIy.png)
+    
+4. Add these 3 atributes to avoid any gradle errors
+    ```kotlin
+      
+    org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+    android.useAndroidX=true
+    android.enableJetifier=true
+    ```
+6. ADD your API KEY
     ```kotlin
       API_KEY = 'ENTER YOUR API KEY HERE'
     ```
+7. **Sync** project and its ready to use 
     
 ## Usage
 
