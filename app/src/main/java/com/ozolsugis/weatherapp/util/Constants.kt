@@ -1,6 +1,5 @@
 package com.ozolsugis.weatherapp.util
 
-import android.graphics.Color
 import com.ozolsugis.weatherapp.R
 import com.ozolsugis.weatherapp.presentation.ui.theme.*
 import java.text.DateFormat
@@ -23,18 +22,18 @@ object Constants {
     val CLOUDS_LIST = listOf<Int>(801,802,803,804)
 
     // Weather Icons
-    const val BROKEN_CLOUDS_ICON = R.drawable.broken_clouds
-    const val CLEAR_SKY_DAY_ICON = R.drawable.clear_day
-    const val CLEAR_SKY_NIGHT_ICON = R.drawable.clear_night
-    const val CLOUDS_ICON = R.drawable.clouds
-    const val FEW_CLOUDS_DAY_ICON = R.drawable.cloudy_day
-    const val FEW_CLOUDS_NIGHT_ICON = R.drawable.cloudy_night
-    const val MIST_ICON = R.drawable.mist
-    const val RAIN_DAY_ICON = R.drawable.rain_day
-    const val RAIN_FULL_OF_CLOUDS_ICON = R.drawable.rain
-    const val RAIN_NIGHT_ICON = R.drawable.rain_night
-    const val SNOW_ICON = R.drawable.snow
-    const val THUNDERSTORM_ICON = R.drawable.thunderstorm
+    const val BROKEN_CLOUDS_ICON = R.drawable.ic_broken_clouds
+    const val CLEAR_SKY_DAY_ICON = R.drawable.ic_clear_day
+    const val CLEAR_SKY_NIGHT_ICON = R.drawable.ic_clear_night
+    const val CLOUDS_ICON = R.drawable.ic_clouds
+    const val FEW_CLOUDS_DAY_ICON = R.drawable.ic_cloudy_day
+    const val FEW_CLOUDS_NIGHT_ICON = R.drawable.ic_cloudy_night
+    const val MIST_ICON = R.drawable.ic_mist
+    const val RAIN_DAY_ICON = R.drawable.ic_rain_day
+    const val RAIN_FULL_OF_CLOUDS_ICON = R.drawable.ic_rain
+    const val RAIN_NIGHT_ICON = R.drawable.ic_rain_night
+    const val SNOW_ICON = R.drawable.ic_snow
+    const val THUNDERSTORM_ICON = R.drawable.ic_thunderstorm
 
     // Weather Icon id's from http call response
     val BROKEN_CLOUDS = listOf("04d","04n")
@@ -51,10 +50,10 @@ object Constants {
     val THUNDERSTORM = listOf("11d","11n")
 
     // Support icons
-    const val COMPASS= R.drawable.compass
-    const val WIND_SPEED = R.drawable.wind
-    const val SUNRISE = R.drawable.sunrise
-    const val SUNSET = R.drawable.sunset
+    const val COMPASS= R.drawable.ic_compass
+    const val WIND_SPEED = R.drawable.ic_wind
+    const val SUNRISE = R.drawable.ic_sunrise
+    const val SUNSET = R.drawable.ic_sunset
 
     // Weather Background color lists
     //Day
