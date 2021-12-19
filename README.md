@@ -229,7 +229,7 @@ MainScreen composable
     ```
 ## Contacts
 
-Ugis Ozols - (This will follow)
+Ugis Ozols - https://www.linkedin.com/in/ozols-ugis/
 
 Project Link - https://github.com/OzolsUgis/WeatherApp
 
